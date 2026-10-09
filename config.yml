@@ -1,0 +1,64 @@
+# ==================== LoginPlusIdentity ====================
+
+# --- Resource pack (tampilan GUI custom) ---
+# Upload LoginPlusIdentity-ResourcePack.zip ke hosting (contoh: raw GitHub / GitHub Release / dropbox dl=1),
+# lalu isi url di bawah. Kosongkan kalau tidak pakai resource pack.
+resource-pack:
+  url: ""
+  # sha1 file zip (40 karakter hex). Boleh kosong.
+  sha1: ""
+  # true = player yang menolak pack langsung di-kick
+  force: false
+  prompt: "§eResource pack dibutuhkan untuk tampilan menu login."
+
+gui:
+  # Dipakai HANYA kalau resource-pack.url kosong tapi pack sudah dipasang lewat server.properties.
+  # Kalau resource-pack.url diisi, plugin otomatis menyesuaikan (pack ke-load = tampil custom,
+  # ditolak/gagal = tampil menu biasa).
+  use-texture: false
+
+login:
+  # kick kalau belum selesai login/bikin character dalam X detik (0 = nonaktif)
+  timeout-seconds: 180
+  # kick kalau salah password sebanyak ini
+  max-attempts: 5
+
+password:
+  min-length: 6
+  # true = wajib kombinasi huruf + angka
+  require-letter-and-digit: false
+
+character:
+  # Regex nama & last name (default: huruf A-Z saja, boleh 2 kata)
+  name-regex: "[A-Za-z]{2,16}( [A-Za-z]{2,16})?"
+  year-min: 1950
+  year-max: 2012
+  # Ganti nama ingame/tab list jadi "Name LastName" character
+  set-display-name: true
+
+id-card:
+  # Judul di KTP (HURUF ASCII). Admin bebas ganti, misal "DEPOK IDENTITY" atau "INDONESIA IDENTITY"
+  title: "INDONESIA IDENTITY"
+
+# 20 negara untuk pilihan nationality (admin bebas ganti, maksimal 28)
+nationalities:
+  - Indonesia
+  - Malaysia
+  - Singapore
+  - Brunei
+  - Thailand
+  - Philippines
+  - Vietnam
+  - Japan
+  - South Korea
+  - China
+  - India
+  - Australia
+  - United States
+  - United Kingdom
+  - Canada
+  - Germany
+  - France
+  - Netherlands
+  - Brazil
+  - Saudi Arabia
