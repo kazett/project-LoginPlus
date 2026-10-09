@@ -1,0 +1,40 @@
+name: Build LoginPlusIdentity
+
+on:
+  push:
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '21'
+
+      - uses: gradle/actions/setup-gradle@v3
+        with:
+          gradle-version: '8.8'
+
+      - name: Susun ulang source ke struktur folder
+        run: |
+          mkdir -p src/main/java src/main/resources
+          for f in *.java; do
+            pkg=$(grep -m1 '^package ' "$f" | sed 's/^package \(.*\);.*/\1/' | tr -d '\r')
+            dir="src/main/java/$(echo "$pkg" | tr . /)"
+            mkdir -p "$dir"
+            cp "$f" "$dir/"
+          done
+          cp plugin.yml config.yml src/main/resources/
+          find src -type f
+
+      - name: Build
+        run: gradle build --no-daemon
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: LoginPlusIdentity-plugin
+          path: build/libs/*.jar
